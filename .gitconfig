@@ -1,0 +1,106 @@
+[user]
+	name = Ry Racherbaumer
+
+#[commit]
+#	gpgsign = true
+
+[pull]
+    rebase = true
+
+[push]
+	default = simple
+
+[core]
+	editor = mate -w
+
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+
+[color "branch"]
+    current = red reverse
+    local = blue
+    remote = green
+
+[color "diff"]
+    meta = yellow
+    frag = magenta
+    old = red bold
+    new = green
+    plain = white
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[url "https://"]
+    insteadOf = http://
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+
+ [alias]
+    # basic
+    branch-name = "!git rev-parse --abbrev-ref HEAD"
+    st = status -s
+    cl = clone
+    ci = commit
+    co = checkout
+    cob = checkout -b
+    br = branch 
+    r = reset
+    cp = cherry-pick
+    gr = grep -Ii
+    up = !git checkout master && git pull
+    fro = !git fetch && git rebase origin/master
+    po = push origin
+    # tweak defaults
+    diff = diff --word-diff
+    grep = grep -Ii
+    br = branch -ra
+    ai = add --interactive
+    # grep on filename
+    f = "!git ls-files | grep -i"
+    # commit
+    cm = commit -m
+    cma = commit -a -m
+    ca = commit -a
+    amend = commit -a --amend
+    caa = commit -a --amend -C HEAD
+    save = !git add -A && git commit -m 'WIP'
+    # log commands
+    ls = log --pretty=format:"%C(green)%h\\ %Creset%s\\ %C(cyan)%cn%C(red)%d\\ %C(yellow)%ad\\ %C(green)%G?\\ %C(magenta)%GS" --decorate --date=relative
+    lsg = log --pretty=format:"%C(green)%h\\ %Creset%s" --graph --decorate --date=relative
+    ll = log --pretty=format:"%C(green)%h\\ %Creset%s\\ %C(cyan)%cn%Cred%d\\ %C(green)%G?\\ %C(magenta)%GS" --decorate --stat
+    lc  = "!f() { git ll "$1"^.."$1"; }; f"
+    fl = log -u
+    # diff
+    d = diff --word-diff
+    dc = diff --cached
+    # diff last commit
+    dlc = diff --cached HEAD^
+    dr  = "!f() { git diff -w "$1"^.."$1"; }; f"
+    diffr  = "!f() { git diff "$1"^.."$1"; }; f"
+    # reset commands
+    undo = reset HEAD~1 --mixed
+    r1 = reset HEAD^
+    r2 = reset HEAD^^
+    rh = reset --hard
+    rh1 = reset HEAD^ --hard
+    rh2 = reset HEAD^^ --hard
+    # last tag created
+    lt = describe --tags --abbrev=0
+    # conflict/merges
+    ours = "!f() { git co --ours $@ && git add $@; }; f"
+    theirs = "!f() { git co --theirs $@ && git add $@; }; f"
+    # list remotes
+    rem="!git config -l | grep remote.*url | tail -n +2"
+    # cleanup
+    bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f && git remote prune origin"
+    bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+		pbranches = !git fetch --all -p && git branch -vv | grep ": gone]" | awk '$3 $4 ~ /:gone]$/ { print $1 }' | xargs -n 1 git branch -d
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true

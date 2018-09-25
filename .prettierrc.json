@@ -1,0 +1,6 @@
+{
+  "arrowParens": "always",
+  "jsxBracketSameLine": true,
+  "trailingComma": "es5",
+  "singleQuote": false
+}
