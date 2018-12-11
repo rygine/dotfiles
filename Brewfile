@@ -5,7 +5,6 @@ tap "caskroom/cask"
 brew "curl"
 brew "git"
 brew "gnupg"
-brew "gpg-agent"
 brew "pinentry"
 brew "yarn", args: ["without-node"]
 brew "zsh"
