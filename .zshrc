@@ -91,3 +91,6 @@ export EDITOR="/usr/local/bin/mate -w"
 export HOMEBREW_NO_ANALYTICS=1
 
 ulimit -n 2048
+
+bindkey "[D" backward-word
+bindkey "[C" forward-word
