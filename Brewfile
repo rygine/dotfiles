@@ -8,6 +8,8 @@ brew "gnupg"
 brew "pinentry"
 brew "yarn", args: ["without-node"]
 brew "zsh"
+brew "jq"
+brew "coreutils"
 cask "iterm2"
 cask "textmate"
 cask "vlc"
