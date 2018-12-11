@@ -7,7 +7,6 @@ brew "git"
 brew "gnupg"
 brew "gpg-agent"
 brew "pinentry"
-brew "node"
 brew "yarn", args: ["without-node"]
 brew "zsh"
 cask "iterm2"
