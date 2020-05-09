@@ -1,0 +1,6 @@
+alias y="yarn"
+alias ys="yarn && yarn start"
+alias ysb="yarn && yarn storybook"
+alias yv="yarn typecheck && yarn lint && yarn test"
+alias gu="git up"
+alias gs="git st"

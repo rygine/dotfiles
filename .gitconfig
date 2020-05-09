@@ -1,8 +1,12 @@
 [user]
 	name = Ry Racherbaumer
+  email = ry@rygine.com
 
 #[commit]
 #	gpgsign = true
+
+[merge]
+	renamelimit = 2048
 
 [pull]
     rebase = true
@@ -11,7 +15,7 @@
 	default = simple
 
 [core]
-	editor = mate -w
+	editor = code-insiders -w -n
 
 [color]
     branch = auto
@@ -54,6 +58,9 @@
     gr = grep -Ii
     up = !git checkout master && git pull
     fro = !git fetch && git rebase origin/master
+    rbc = rebase --continue
+		rbi = "!f() { git rebase -i HEAD~$1; }; f"
+		su = !git branch --set-upstream-to=origin/$(git branch-name) $(git branch-name)
     po = push origin
     # tweak defaults
     diff = diff --word-diff
@@ -104,3 +111,4 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	required = true
+  process = git-lfs filter-process
